@@ -1,0 +1,47 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+class "用户 (User)" as User {
+  + id : BIGINT
+  + username : String
+  + password : String
+  + status : Enum
+  + created_at : Date
+}
+
+class "课程 (Course)" as Course {
+  + id : BIGINT
+  + title : String
+  + coverUrl : String
+  + difficulty : Enum
+  + status : Enum
+}
+
+class "线上自习室 (StudyRoom)" as StudyRoom {
+  + id : BIGINT
+  + name : String
+  + capacity : int
+  + status : Enum
+}
+
+class "测验记录 (ExamRecord)" as ExamRecord {
+  + id : BIGINT
+  + paperId : BIGINT
+  + startTime : DateTime
+  + endTime : DateTime
+  + score : int
+}
+
+class "AI调用日志 (AiCallLog)" as AiCallLog {
+  + id : BIGINT
+  + questionType : String
+  + tokenCost : int
+  + summary : String
+}
+
+User "1" -- "0..*" Course : 报名学习
+User "1" -- "0..*" StudyRoom : 加入
+User "1" -- "0..*" ExamRecord : 提交
+User "1" -- "0..*" AiCallLog : 触发
+Course "1" -- "0..*" ExamRecord : 包含
+@enduml

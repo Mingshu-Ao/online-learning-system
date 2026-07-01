@@ -1,0 +1,26 @@
+@startuml
+!theme plain
+skinparam componentStyle rectangle
+
+actor "学员 (Student)" as Student
+actor "教师 (Teacher)" as Teacher
+actor "管理员 (Admin)" as Admin
+
+component "在线学习系统\n(Spring Boot 主业务)" as MainSystem
+
+boundary "AI 智能助教微服务\n(FastAPI)" as AIService
+database "数据持久层\n(MySQL)" as MySQL
+database "实时状态与缓存\n(Redis)" as Redis
+storage "对象存储\n(MinIO)" as MinIO
+
+Student --> MainSystem : 观看视频、提交测验、进入自习室
+Teacher --> MainSystem : 上传资源、发布试卷、查看学情
+Admin --> MainSystem : 用户管理、课程审核、日志审计
+
+MainSystem --> AIService : 发起文本提问、OCR错题解析请求
+AIService --> MainSystem : 返回结构化解析与推荐结果
+
+MainSystem --> MySQL : 核心业务数据落库
+MainSystem --> Redis : 维护自习室高频状态、Token缓存
+MainSystem --> MinIO : 存储与读取课程视频、文档
+@enduml

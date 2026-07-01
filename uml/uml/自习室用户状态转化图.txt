@@ -1,0 +1,18 @@
+@startuml
+hide empty description
+
+[*] --> FOCUSING : 学员加入开放中的自习室 
+
+FOCUSING --> BREAK : 用户主动操作进入小憩 
+BREAK --> FOCUSING : 用户结束小憩恢复专注
+FOCUSING --> DISCONNECTED : 遇到网络异常断线 
+BREAK --> DISCONNECTED : 遇到网络异常断线 
+
+DISCONNECTED --> FOCUSING : 在 Redis TTL 内重连成功 
+DISCONNECTED --> LEFT : 超过 Redis TTL 未重连 
+
+FOCUSING --> LEFT : 用户主动离开房间
+BREAK --> LEFT : 用户主动离开房间
+
+LEFT --> [*]
+@enduml

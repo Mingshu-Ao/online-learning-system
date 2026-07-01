@@ -1,0 +1,36 @@
+@startuml
+left to right direction
+skinparam packageStyle rectangle
+
+actor "学员 (Student)" as Student
+actor "教师 (Teacher)" as Teacher
+actor "管理员 (Admin)" as Admin
+
+rectangle 在线学习系统 {
+  usecase "课程与视频学习" as UC1
+  usecase "参加测验与管理错题" as UC2
+  usecase "参与线上自习室" as UC3
+  usecase "调用 AI 智能助教" as UC4
+  
+  usecase "管理课程与教学资源" as UC5
+  usecase "管理题库与试卷" as UC6
+  usecase "查看班级学情看板" as UC7
+  
+  usecase "管理平台用户与权限" as UC8
+  usecase "审核课程上下架" as UC9
+  usecase "查看系统运营与审计日志" as UC10
+}
+
+Student --> UC1
+Student --> UC2
+Student --> UC3
+Student --> UC4
+
+Teacher --> UC5
+Teacher --> UC6
+Teacher --> UC7
+
+Admin --> UC8
+Admin --> UC9
+Admin --> UC10
+@enduml
