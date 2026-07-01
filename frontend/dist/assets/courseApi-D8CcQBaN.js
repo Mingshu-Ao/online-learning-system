@@ -1,0 +1,1 @@
+import{z as s,m as r}from"./index-Cvm8AWsi.js";function c(e){return s(r.get("/courses",{params:e}))}function u(e){return s(r.get(`/courses/${e}`))}function o(e){return s(r.get(`/resources/${e}/access-url`))}export{c as a,o as b,u as f};

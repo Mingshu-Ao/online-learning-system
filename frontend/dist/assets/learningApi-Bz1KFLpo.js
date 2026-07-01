@@ -1,0 +1,1 @@
+import{z as r,m as s}from"./index-Cvm8AWsi.js";function n(t){return r(s.post("/student/video-progress",t))}function o(t){return r(s.get(`/student/courses/${t}/progress`))}function u(){return r(s.get("/student/learning-stats"))}export{u as a,o as f,n as r};
